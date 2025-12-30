@@ -1,0 +1,14 @@
+[project]
+name = "push-service"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aio-pika>=9.5.7",
+    "fastapi-limiter>=0.1.6",
+    "fastapi[standard]>=0.121.1",
+    "pydantic>=2.12.4",
+    "python-dotenv>=1.2.1",
+    "redis>=7.0.1",
+]
