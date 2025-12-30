@@ -1,0 +1,20 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    healthcheck:
+      # This command checks if RabbitMQ is actually ready to accept connections
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: push-service:latest
+    depends_on:
+      rabbitmq:
+        # This is the "magic" line that enforces the reliance
+        condition: service_healthy
+
+volumes:
+  rabbitmq-data:
+  rabbitmq-log:
